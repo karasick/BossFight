@@ -99,13 +99,19 @@ public class MainSession : MonoBehaviour
     }
 
 
+    public float GetPlayerAttackDamage()
+    {
+        return MainPlayer.Profile.AttackDamage;
+    }
+
+
     /*
      * Views handlings
      * 
      */
     public void ShootButtonClick()
     {
-        throw new NotImplementedException();
+        MainPlayer.ShootButtonClick();
     }
 
     public void BlockButtonClick()

@@ -8,7 +8,17 @@ public class MainPlayer : MonoBehaviour
     [SerializeField]
     protected MainSession MainSession;
 
+    [SerializeField]
     public PlayerProfile Profile;
+
+    [SerializeField]
+    protected GameObject Aim;
+
+    [SerializeField]
+    protected GameObject Fireball;
+
+    private float FireballSpeed = 10;
+    private float FireballTime = 1;
 
     private float TimeBeforeRegeneration = 0;
 
@@ -16,12 +26,19 @@ public class MainPlayer : MonoBehaviour
     void Start()
     {
         CheckHealth();
+        SetUpPlayer();
     }
 
     // Update is called once per frame
     void Update()
     {
         RegenerateHealth();
+    }
+
+    private void SetUpPlayer()
+    {
+        Profile.ActivePlayerState = PlayerState.Alive;
+        Profile.CurrentHealth = Profile.MaxHealth;
     }
 
     private void CheckHealth()
@@ -68,5 +85,14 @@ public class MainPlayer : MonoBehaviour
         {
             Profile.CurrentHealth = 0;
         }
+    }
+
+    public void ShootButtonClick()
+    {
+        GameObject fireball = Instantiate(Fireball, Aim.transform) as GameObject;
+        fireball.transform.localScale = new Vector3(100, 100, 100);
+        Rigidbody fireballRigidbody = fireball.GetComponent<Rigidbody>();
+        fireballRigidbody.velocity = transform.forward * FireballSpeed;
+        Destroy(fireball, FireballTime);
     }
 }

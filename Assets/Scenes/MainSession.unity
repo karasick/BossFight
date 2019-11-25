@@ -594,7 +594,7 @@ Transform:
   m_Children:
   - {fileID: 732502150}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &417874193
 MonoBehaviour:
@@ -776,7 +776,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 500
+  far clip plane: 100
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -854,7 +854,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1736322130}
+  - {fileID: 861344490}
   m_Father: {fileID: 417874192}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -870,7 +870,7 @@ GameObject:
   - component: {fileID: 861344492}
   - component: {fileID: 861344491}
   m_Layer: 0
-  m_Name: Aim
+  m_Name: AimSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -883,12 +883,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 861344489}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1736322130}
-  m_RootOrder: 3
+  m_Father: {fileID: 732502150}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1028,7 +1028,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 23.764002, y: 51.137, z: 26.160002}
 --- !u!114 &973293650
 MonoBehaviour:
@@ -1106,7 +1106,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1122713313 stripped
 MonoBehaviour:
@@ -1324,7 +1324,7 @@ GameObject:
   - component: {fileID: 1736322132}
   - component: {fileID: 1736322131}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: UICanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1344,10 +1344,9 @@ RectTransform:
   - {fileID: 151557010}
   - {fileID: 214198174}
   - {fileID: 1343020116}
-  - {fileID: 861344490}
   - {fileID: 567312292}
-  m_Father: {fileID: 732502150}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1402,7 +1401,7 @@ Canvas:
   m_GameObject: {fileID: 1736322129}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 732502146}
   m_PlaneDistance: 10
   m_PixelPerfect: 0
@@ -1484,7 +1483,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &392166653556362129
 PrefabInstance:
@@ -1536,7 +1535,7 @@ PrefabInstance:
     - target: {fileID: 392166654062851125, guid: 4df0fc1285e50f349b5755a3924a4583,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 392166654062851125, guid: 4df0fc1285e50f349b5755a3924a4583,
         type: 3}
@@ -1661,7 +1660,7 @@ PrefabInstance:
     - target: {fileID: 1974226475147574524, guid: 27bb21b05f2e58a4581a871407bd496f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1974226475147574524, guid: 27bb21b05f2e58a4581a871407bd496f,
         type: 3}

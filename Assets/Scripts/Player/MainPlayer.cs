@@ -18,7 +18,7 @@ public class MainPlayer : MonoBehaviour
     protected GameObject Fireball;
 
     private float FireballSpeed = 10;
-    private float FireballTime = 1;
+    private float FireballTime = 5;
 
     private float TimeBeforeRegeneration = 0;
 
@@ -90,7 +90,7 @@ public class MainPlayer : MonoBehaviour
     public void ShootButtonClick()
     {
         GameObject fireball = Instantiate(Fireball, Aim.transform) as GameObject;
-        fireball.transform.localScale = new Vector3(100, 100, 100);
+        //fireball.transform.localScale = new Vector3(100, 100, 100);
         Rigidbody fireballRigidbody = fireball.GetComponent<Rigidbody>();
         fireballRigidbody.velocity = transform.forward * FireballSpeed;
         Destroy(fireball, FireballTime);

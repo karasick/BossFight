@@ -18,5 +18,7 @@ public class Fireball : MonoBehaviour
     {
         ExplosionParticle.Play();
         GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0.5f);
+        int onHitTime = 1;
+        Destroy(gameObject, onHitTime);
     }
 }

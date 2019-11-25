@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PausePanel : MainSessionPanel
+public class PausePanel : GameSessionPanel
 {
     public void BackButtonClick()
     {
-        MainSession.BackButtonClick();
+        GameSession.BackButtonClick();
     }
 }

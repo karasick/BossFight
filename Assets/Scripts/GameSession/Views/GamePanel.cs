@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GamePanel : MainSessionPanel
+public class GamePanel : GameSessionPanel
 {
     [SerializeField]
     private Text CurrentLevelText = null;
@@ -30,30 +30,30 @@ public class GamePanel : MainSessionPanel
 
     private void SetTextInformation()
     {
-        CurrentLevelText.text = "Lvl: " + MainSession.MainPlayer.Profile.Level;
+        CurrentLevelText.text = "Lvl: " + GameSession.MainPlayer.Profile.Level;
         CurrentScoreText.text = "Score: " + ScoreManager.Score;
-        CurrentExpText.text = "Exp: " + MainSession.MainPlayer.Profile.CurrentExp + "/" + MainSession.MainPlayer.Profile.ExpToLevelUp;
+        CurrentExpText.text = "Exp: " + GameSession.MainPlayer.Profile.CurrentExp + "/" + GameSession.MainPlayer.Profile.ExpToLevelUp;
     }
 
     public void SetHPInformation()
     {
-        CurrentHPBar.fillAmount = MainSession.MainPlayer.Profile.CurrentHealth / MainSession.MainPlayer.Profile.MaxHealth;
+        CurrentHPBar.fillAmount = GameSession.MainPlayer.Profile.CurrentHealth / GameSession.MainPlayer.Profile.MaxHealth;
     }
 
 
     public void PauseButtonClick()
     {
-        MainSession.PauseButtonClick();
+        GameSession.PauseButtonClick();
     }
 
     public void ShootButtonClick()
     {
-        MainSession.ShootButtonClick();
+        GameSession.ShootButtonClick();
     }
 
     public void BlockButtonClick()
     {
-        MainSession.BlockButtonClick();
+        GameSession.BlockButtonClick();
     }
 
     private void CheckTouchInput()
@@ -66,7 +66,7 @@ public class GamePanel : MainSessionPanel
             }
             if (Input.GetTouch(0).phase == TouchPhase.Ended)
             {
-                MainSession.ScreenTap();
+                GameSession.ScreenTap();
             }
         }
 

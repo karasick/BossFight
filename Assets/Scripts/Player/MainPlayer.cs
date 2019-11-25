@@ -6,7 +6,10 @@ using UnityEngine;
 public class MainPlayer : MonoBehaviour
 {
     [SerializeField]
-    protected MainSession MainSession;
+    protected Camera Camera;
+
+    [SerializeField]
+    protected GameSession GameSession;
 
     [SerializeField]
     public PlayerProfile Profile;
@@ -16,9 +19,6 @@ public class MainPlayer : MonoBehaviour
 
     [SerializeField]
     protected GameObject Fireball;
-
-    private float FireballSpeed = 10;
-    private float FireballTime = 5;
 
     private float TimeBeforeRegeneration = 0;
 
@@ -46,7 +46,7 @@ public class MainPlayer : MonoBehaviour
         if(Profile.CurrentHealth <= 0)
         {
             Profile.ActivePlayerState = PlayerState.Dead;
-            MainSession.CloseSession();
+            GameSession.CloseSession();
         }
         //else
         //{
@@ -79,6 +79,28 @@ public class MainPlayer : MonoBehaviour
         }
     }
 
+
+    public void GetExp(int exp = 0)
+    {
+        Profile.CurrentExp += exp;
+
+        CheckLevelUp();
+    }
+
+
+    private void CheckLevelUp()
+    {
+        if(Profile.CurrentExp >= Profile.ExpToLevelUp)
+        {
+            Profile.CurrentExp -= Profile.ExpToLevelUp;
+            Profile.ExpToLevelUp *= 2;
+            Profile.Level++;
+
+            CheckLevelUp();
+        }
+    }
+
+
     private void CheckInput()
     {
         if (Input.GetKeyDown(KeyCode.G))
@@ -89,10 +111,29 @@ public class MainPlayer : MonoBehaviour
 
     public void ShootButtonClick()
     {
-        GameObject fireball = Instantiate(Fireball, Aim.transform) as GameObject;
+        RaycastHit hit;
+
+        if (Physics.Raycast(Camera.transform.position, Camera.transform.forward, out hit))
+        {
+            if(hit.transform.GetComponent<BoxCollider>())
+            {
+                //Debug.Log("hit object");
+                //Debug.Log(hit.transform.position);
+            }
+            else
+            {
+                //Debug.Log("hit none");
+                //Debug.Log(hit.transform.position);
+            }
+        }
+
+        GameObject fireball = Instantiate(Fireball, Aim.transform.position, Camera.transform.rotation);
+
+
+        //fireball.transform.Rotate(Quaternion.LookRotation());
         //fireball.transform.localScale = new Vector3(100, 100, 100);
-        Rigidbody fireballRigidbody = fireball.GetComponent<Rigidbody>();
-        fireballRigidbody.velocity = transform.forward * FireballSpeed;
-        Destroy(fireball, FireballTime);
+        //Rigidbody fireballRigidbody = fireball.GetComponent<Rigidbody>();
+        //fireballRigidbody.velocity = transform.forward * FireballSpeed;
+        ////Destroy(fireball, FireballTime);
     }
 }

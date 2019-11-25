@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
-    protected MainSession MainSession;
+    protected GameSession GameSession;
 
     public EnemyProfile Profile;
 
@@ -35,6 +36,9 @@ public class Enemy : MonoBehaviour
         if (Profile.CurrentHealth <= 0)
         {
             Profile.ActivePlayerState = EnemyState.Dead;
+
+            GameSession.GiveExpToPlayer(Profile.ExpToGain);
+
             Destroy(gameObject);
         }
         else
@@ -87,7 +91,7 @@ public class Enemy : MonoBehaviour
 
         if (other.gameObject.name == "FireBall(Clone)")
         {
-            SetHealthHit(MainSession.GetPlayerAttackDamage());
+            SetHealthHit(GameSession.GetPlayerAttackDamage());
         }
     }
 }

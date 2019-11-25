@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainSession : MonoBehaviour
+public class GameSession : MonoBehaviour
 {
     // Views binding
     [SerializeField]
@@ -42,7 +42,7 @@ public class MainSession : MonoBehaviour
 
 
     /*
-     * MainSession handlings
+     * GameSession handlings
      * 
      */
     private void SetActivePanel(string panelNameNew)
@@ -104,6 +104,11 @@ public class MainSession : MonoBehaviour
         return MainPlayer.Profile.AttackDamage;
     }
 
+    public void GiveExpToPlayer(int exp = 0)
+    {
+        MainPlayer.GetExp(exp);
+    }
+
 
     /*
      * Views handlings
@@ -146,8 +151,9 @@ public class MainSession : MonoBehaviour
     }
 
 
-    public void ExitButtonClick()
+    public void ToMenuButtonClick()
     {
-        Application.Quit();
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2733366dc6956684685d16beca63f7e5, type: 3}
   m_Name: MainPlayerProfile
   m_EditorClassIdentifier: 
-  ActivePlayerState: 1
+  ActivePlayerState: 0
   Level: 1
   CurrentExp: 0
   ExpToLevelUp: 10

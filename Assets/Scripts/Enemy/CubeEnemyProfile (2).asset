@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 427db959a6214004b949ecdb575ff913, type: 3}
-  m_Name: CubeEnemyProfile
+  m_Name: CubeEnemyProfile (2)
   m_EditorClassIdentifier: 
-  ActivePlayerState: 1
+  ActivePlayerState: 0
   Level: 1
   ExpToGain: 10
   MaxHealth: 50
-  CurrentHealth: 0
+  CurrentHealth: 50
   RegenerationHealthPoints: 5
   RegenerationHealthSpeed: 10
   AttackSpeedPerSec: 0.2

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EndGamePanel : MainSessionPanel
+public class EndGamePanel : GameSessionPanel
 {
     [SerializeField]
     private Text EndScoreText = null;
@@ -17,6 +17,6 @@ public class EndGamePanel : MainSessionPanel
 
     public void RetryButtonClick()
     {
-        MainSession.RetryButtonClick();
+        GameSession.RetryButtonClick();
     }
 }

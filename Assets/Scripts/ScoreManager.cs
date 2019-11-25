@@ -6,7 +6,7 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField]
-    protected MainSession MainSession;
+    protected GameSession GameSession;
 
     public static ScoreManager Instance { get; private set; }
 

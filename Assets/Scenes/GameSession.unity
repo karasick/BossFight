@@ -473,6 +473,11 @@ PrefabInstance:
       propertyPath: GameSession
       value: 
       objectReference: {fileID: 1276985091}
+    - target: {fileID: 5237039995215269302, guid: 3d5a16a941ca1624da3662533d5f0bf8,
+        type: 3}
+      propertyPath: CurrentHPText
+      value: 
+      objectReference: {fileID: 482019791}
     - target: {fileID: 2485564445886533926, guid: 3d5a16a941ca1624da3662533d5f0bf8,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -754,6 +759,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1473633118}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &482019791 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4700123111628897909, guid: 3d5a16a941ca1624da3662533d5f0bf8,
+    type: 3}
+  m_PrefabInstance: {fileID: 80652176}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &567312293 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 392166654062851124, guid: 4df0fc1285e50f349b5755a3924a4583,

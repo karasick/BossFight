@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class Timer<T> : MonoBehaviour
 {
-    private float TimeFromStart;
-    private float TimeLeft;
-    private float TimeInterval;
-    private float TimeBetweenInteval;
+    protected float TimeFromStart;
+    protected float TimeLeft;
+    protected float TimeInterval;
+    protected float TimeBetweenInteval;
 
-    private T ObjectForTimer = default(T);
+    protected T ObjectForTimer = default(T);
 
     public bool IsTimeElapsed = false;
 
@@ -28,12 +28,13 @@ public class Timer<T> : MonoBehaviour
 
         if (TimeLeft > 0 && IsTimeElapsed == false)
         {
-            if(TimeBetweenInteval >= TimeInterval)
+            if (TimeBetweenInteval >= TimeInterval)
             {
-                //TetrisBlock.BlockFall();
+                //method
                 TimeLeft -= Time.deltaTime;
                 TimeBetweenInteval = 0;
-            } else
+            }
+            else
             {
                 TimeBetweenInteval += Time.deltaTime;
             }

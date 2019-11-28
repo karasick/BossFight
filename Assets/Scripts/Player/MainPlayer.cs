@@ -22,6 +22,14 @@ public class MainPlayer : MonoBehaviour
 
     private float TimeBeforeRegeneration = 0;
 
+    private float CurrentHealthHitValue = 0;
+    private float HitSpeed = 30;
+
+    private float CurrentHealthRegenerationValue = 0;
+    private float RegenerationSpeed = 30;
+
+    private float HPAfterChange;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,13 +40,28 @@ public class MainPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RegenerateHealth();
+        CheckInput();
+        HandleHealth();
+    }
+
+
+    private void CheckInput()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            TakeHealthHit(20);
+        }
+        else if (Input.GetKeyDown(KeyCode.R))
+        {
+            TakeHealthRegeneration(10);
+        }
     }
 
     private void SetUpPlayer()
     {
         Profile.ActivePlayerState = PlayerState.Alive;
         Profile.CurrentHealth = Profile.MaxHealth;
+        HPAfterChange = Profile.MaxHealth;
     }
 
     private void CheckHealth()
@@ -54,11 +77,33 @@ public class MainPlayer : MonoBehaviour
         //}
     }
 
-    private void RegenerateHealth()
+    private void HandleHealth()
     {
         CheckHealth();
 
         //Debug.Log(Profile.CurrentHealth);
+
+        if (CurrentHealthRegenerationValue > 0)
+        {
+            Profile.CurrentHealth += Time.deltaTime * RegenerationSpeed;
+            CurrentHealthRegenerationValue -= Time.deltaTime * RegenerationSpeed;
+        }
+        else if (CurrentHealthRegenerationValue < 0)
+        {
+            CurrentHealthRegenerationValue = 0;
+            Profile.CurrentHealth = HPAfterChange;
+        }
+
+        if (CurrentHealthHitValue > 0)
+        {
+            Profile.CurrentHealth -= Time.deltaTime * HitSpeed;
+            CurrentHealthHitValue -= Time.deltaTime * HitSpeed;
+        }
+        else if (CurrentHealthHitValue < 0)
+        {
+            CurrentHealthHitValue = 0;
+            Profile.CurrentHealth = HPAfterChange;
+        }
 
         if(TimeBeforeRegeneration < Profile.RegenerationHealthSpeed)
         {
@@ -68,15 +113,77 @@ public class MainPlayer : MonoBehaviour
         {
             if (Profile.CurrentHealth < Profile.MaxHealth)
             {
-                Profile.CurrentHealth += Profile.RegenerationHealthPoints;
-            }
-            else
-            {
-                Profile.CurrentHealth = Profile.MaxHealth;
+                TakeHealthRegeneration(Profile.RegenerationHealthPoints);
+
+                //Debug.Log("auto_regen" + Profile.CurrentHealth);
             }
 
             TimeBeforeRegeneration = 0;
         }
+
+        if(Profile.CurrentHealth > Profile.MaxHealth)
+        {
+            Profile.CurrentHealth = Profile.MaxHealth;
+            HPAfterChange = Profile.MaxHealth;
+        }
+    }
+
+
+    public void TakeHealthHit(float hitValue)
+    {
+        if(Profile.CurrentHealth > 0)
+        {
+            if(CurrentHealthRegenerationValue > hitValue)
+            {
+                CurrentHealthRegenerationValue -= hitValue;
+                HPAfterChange -= hitValue;
+            }
+            else if(CurrentHealthRegenerationValue < hitValue && CurrentHealthRegenerationValue != 0)
+            {
+                CurrentHealthHitValue += hitValue - CurrentHealthRegenerationValue;
+                HPAfterChange -= hitValue;
+                CurrentHealthRegenerationValue = 0;
+            }
+            else
+            {
+                CurrentHealthHitValue += hitValue;
+                HPAfterChange -= hitValue;
+            }
+        }
+
+        //Debug.Log("hit" + HPAfterChange);
+    }
+
+
+    public void TakeHealthRegeneration(float regenerationValue)
+    {
+        if (Profile.CurrentHealth < Profile.MaxHealth)
+        {
+            if(CurrentHealthHitValue > regenerationValue)
+            {
+                CurrentHealthHitValue -= regenerationValue;
+                HPAfterChange += regenerationValue;
+            }
+            else if(CurrentHealthHitValue < regenerationValue && CurrentHealthHitValue != 0)
+            {
+                CurrentHealthRegenerationValue += regenerationValue - CurrentHealthHitValue;
+                HPAfterChange += regenerationValue;
+                CurrentHealthHitValue = 0;
+            }
+            else
+            {
+                CurrentHealthRegenerationValue += regenerationValue;
+                HPAfterChange += regenerationValue;
+            }
+        }
+
+        //Debug.Log("regen" + HPAfterChange);
+    }
+
+
+    private void HitPlayer()
+    {
+        
     }
 
 
@@ -97,15 +204,6 @@ public class MainPlayer : MonoBehaviour
             Profile.Level++;
 
             CheckLevelUp();
-        }
-    }
-
-
-    private void CheckInput()
-    {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            Profile.CurrentHealth = 0;
         }
     }
 

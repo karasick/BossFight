@@ -13,6 +13,8 @@ public class GamePanel : GameSessionPanel
     private Text CurrentExpText = null;
     [SerializeField]
     private Image CurrentHPBar = null;
+    [SerializeField]
+    private Text CurrentHPText = null;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +40,7 @@ public class GamePanel : GameSessionPanel
     public void SetHPInformation()
     {
         CurrentHPBar.fillAmount = GameSession.MainPlayer.Profile.CurrentHealth / GameSession.MainPlayer.Profile.MaxHealth;
+        CurrentHPText.text = System.Math.Floor(GameSession.MainPlayer.Profile.CurrentHealth).ToString();
     }
 
 

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameSession : MonoBehaviour
+public class GameSession : MonoBehaviour, ILoading
 {
     // Views binding
     [SerializeField]
@@ -13,6 +13,10 @@ public class GameSession : MonoBehaviour
     // Active player
     [SerializeField]
     public MainPlayer MainPlayer;
+
+    // Scene loader
+    [SerializeField]
+    public MainMenuLoader MainMenuLoader;
 
     // Active panel
     public string ActivePanel { get; private set; }
@@ -37,7 +41,7 @@ public class GameSession : MonoBehaviour
     //// Update is called once per frame
     //void Update()
     //{
-        
+
     //}
 
 
@@ -45,7 +49,7 @@ public class GameSession : MonoBehaviour
      * GameSession handlings
      * 
      */
-    private void SetActivePanel(string panelNameNew)
+    public void SetActivePanel(string panelNameNew)
     {
         foreach (GameObject Panel in Panels)
         {
@@ -154,6 +158,6 @@ public class GameSession : MonoBehaviour
     public void ToMenuButtonClick()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        MainMenuLoader.LoadSceneAsynch();
     }
 }

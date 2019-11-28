@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class MainMenu : MonoBehaviour, ILoading
 {
     // Views binding
     [SerializeField]
@@ -15,6 +15,10 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private Image BackgroundImage;
 
+    // Scene loader
+    [SerializeField]
+    public GameSessionLoader GameSessionLoader;
+
     //// Scoreboard
     //public List<int> Scoreboard;
 
@@ -22,7 +26,7 @@ public class MainMenu : MonoBehaviour
     private Sprite[] MenuSprites;
 
     // Active panel
-    private string ActivePanel;
+    public string ActivePanel { get; private set; }
 
     // Active menu sprite
     private string ActiveMenuSprite;
@@ -54,7 +58,7 @@ public class MainMenu : MonoBehaviour
      * Handlings
      * 
      */
-    private void SetActivePanel(string panelNameNew)
+    public void SetActivePanel(string panelNameNew)
     {
         foreach(GameObject Panel in Panels)
         {
@@ -104,7 +108,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayButtonClick()
     {
-        SceneManager.LoadScene("GameSession");
+        GameSessionLoader.LoadSceneAsynch();
     }
 
 
